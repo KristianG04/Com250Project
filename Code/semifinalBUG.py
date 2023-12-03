@@ -94,13 +94,9 @@ class MusicPlayer:
                                      text="Previous", 
                                      command=self.prev_song)
         
-        self.add_button = tk.Button(self.playlist_frame, 
-                                    text="Add Music", 
-                                    command=self.add_music)
-        
         #Also located in the window and not playlist frame
         self.currently_playing = tk.Label(self.window,
-                                          text = "Currently Playing",
+                                          text = "Currently Playing: ",
                                           font = ("Arial", 20))
         
         #Also located in the window and not playlist frame
@@ -117,7 +113,7 @@ class MusicPlayer:
                                   relwidth = 0.40,
                                   relheight = 0.10)
 
-        self.playlist_frame.columnconfigure((0,1,2,3,4), weight = 1)
+        self.playlist_frame.columnconfigure((0,1,2,3), weight = 1)
 
         self.playlist_frame.rowconfigure((0), weight = 0)
 
@@ -125,7 +121,6 @@ class MusicPlayer:
         self.pause_button.grid(row=0, column=1, sticky = 'we')
         self.next_button.grid(row=0, column=2, sticky = 'we')
         self.prev_button.grid(row=0, column=3, sticky = 'we')
-        self.add_button.grid(row=0, column=4, sticky = 'we')
 
         self.currently_playing.place(relx = 0.55,
                                      rely = 0.20,
@@ -150,14 +145,9 @@ class MusicPlayer:
         # relwidth ensures it takes up half the screen's width
         # rel height ensures it takes up the left side vertically
         self.homepage_frame.place(relx = 0.14, 
-                                  rely = 0.20, 
+                                  rely = 0.30, 
                                   relwidth = 0.40, 
                                   relheight = 0.10)
-        
-        #Test code, DELETE IT LATER
-        #tk.Label(self.homepage_frame, 
-        #         background = 'red',).pack(expand = True,
-        #                                   fill = 'both')
         
         ############################
         #   Homepage Widgets
@@ -171,6 +161,10 @@ class MusicPlayer:
                                        text = "Library",
                                        font = ('Arial', 25))
         
+        self.add_button = tk.Button(self.window, 
+                                    text="Add Music", 
+                                    command=self.add_music)
+        
         #This is the variable name used to store whatever
         #The user types into the Entry widget defined below
         searched_song = tk.StringVar()
@@ -178,8 +172,9 @@ class MusicPlayer:
         self.user_search = tk.Entry(self.homepage_frame,
                                     textvariable = searched_song,
                                     font = ('calibre', 10))
+        
         self.searched_results_var = tk.StringVar()
-        #Search button here, integrate search bar code here
+
         self.search_button = tk.Button(self.homepage_frame,
                                        text="Search",
                                        command=self.search_music
@@ -197,9 +192,6 @@ class MusicPlayer:
 
         self.like_button = tk.Button(self.window,
                                      text = "Like", command= self.like_song)
-        
-        
-
 
         ############################
         #   Homepage Widgets layout
@@ -214,6 +206,11 @@ class MusicPlayer:
                                  rely = .10,
                                  relwidth = 0.40,
                                  relheight = 0.10)
+        
+        self.add_button.place(relx = .20,
+                              rely = .20,
+                              relwidth = .10,
+                              relheight = .05)
         
         self.user_search.grid(row = 0,
                               column = 0)
@@ -275,7 +272,7 @@ class MusicPlayer:
             self.update_song_label()
 
     def update_song_label(self):
-        song_name = self.playlist[self.current_song].split("/")[-1]
+        song_name = self.playlist[self.current_song].split("\\")[-1]
         self.song_label["text"] = "Now Playing: " + song_name
     
     def search_music(self):
