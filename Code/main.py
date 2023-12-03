@@ -3,7 +3,7 @@ import tkinter as tk
 #imports the MusicPlayer class from the homepageGUI
 #File so we can use the constructor from that class
 #To start up the Homepage GUI
-from SaurabhModificationsHomepageGUI import MusicPlayer
+from semifinalBUG import MusicPlayer
 
 #############################################################
 
