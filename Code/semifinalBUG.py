@@ -280,7 +280,7 @@ class MusicPlayer:
     
     def search_music(self):
         searched_term = self.user_search.get().lower()
-        results = [os.path.basename(song) for song in self.library if searched_term in song.lower()]
+        results = [song for song in self.library if searched_term in song.lower()]
         self.searched_results_var.set((results))
 
     def play_selected_song(self, event):
