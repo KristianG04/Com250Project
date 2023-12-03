@@ -177,32 +177,23 @@ class MusicPlayer:
                                     font = ('calibre', 10))
         self.searched_results_var = tk.StringVar()
         #Search button here, integrate search bar code here
-        self.search_button = tk.Button(
-            self.homepage_frame,
-            text="Search",
-            command=self.search_music
+        self.search_button = tk.Button(self.homepage_frame,
+                                       text="Search",
+                                       command=self.search_music
         )
         
-        self.search_result = tk.Listbox(
-            self.homepage_frame,
-            height=5,
-            width=25,
-            listvariable=self.searched_results_var
+        self.search_result = tk.Listbox(self.window,
+                                        height = 100,
+                                        width = 100,
+                                        listvariable=self.searched_results_var
         )
         self.search_result.bind("<<ListboxSelect>>", self.play_selected_song)
         
-        #This is the variable name used to store whether
-        #The user selected the song they searched for or not
-        #to add to thier playlist
-        select_song = tk.IntVar()
+        #Like button, used to add songs from the library to the playlist
+        #Add like button functionality to this
 
-        self.search_selection_checkbox = tk.Checkbutton(self.window,
-                                                        text = "Select Searched Song",
-                                                        variable = select_song,
-                                                        onvalue = 1,
-                                                        offvalue = 0,
-                                                        height = 10,
-                                                        width = 25)
+        self.like_button = tk.Button(self.window,
+                                     text = "Like")
         
         
 
@@ -227,14 +218,15 @@ class MusicPlayer:
         self.search_button.grid(row = 0,
                                 column = 1)
         
-        self.search_result.grid(row = 1,
-                                column = 0)
-
-        #change code so the button goes below the search_result
-        self.search_selection_checkbox.place(relx = .20,
-                                             rely = .30,
-                                             relwidth = .15,
-                                             relheight = .10)
+        self.search_result.place(relx = .05,
+                                 rely = .35,
+                                 relwidth = 0.40,
+                                 relheight = 0.30)
+        
+        self.like_button.place(relx = 0.20,
+                               rely = 0.80,
+                               relwidth = 0.10,
+                               relheight = 0.10)
 
 
     #############################################################
